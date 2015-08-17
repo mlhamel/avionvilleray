@@ -23,6 +23,7 @@ docker-build: do-docker-build
 docker-commit: do-docker-commit
 docker-push: do-docker-push
 docker-tag: do-docker-tag
+dump1090: do-dump1090
 
 do-docker-build:
 	docker build -t avionvilleray --no-cache --rm . | tee build.log || exit 1
@@ -35,6 +36,9 @@ do-docker-push:
 
 do-docker-tag:
 	docker tag -f $(revision) $(repos)
+
+do-dump1090:
+	cd modules/dump1090 && make clean && make; cd ../../
 
 # Version Bump using bumpversion
 patch:

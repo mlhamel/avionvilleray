@@ -9,6 +9,7 @@ CHANGES = open(os.path.join(here, "CHANGES.txt")).read()
 requires = [
     "alembic",
     "ansible",
+    "apscheduler",
     "Babel",
     "bumpversion",
     "circus",
@@ -26,6 +27,7 @@ requires = [
     "pyramid_tm",
     "pyScss",
     "raven",
+    "requests",
     "transaction",
     "unicodecsv",
     "waitress",
