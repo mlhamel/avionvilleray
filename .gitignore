@@ -1,0 +1,21 @@
+*~
+*.pyc
+*.pyo
+*.swo
+*.swp
+*.mo
+*.egg
+*.egg-info
+/.coverage
+.DS_Store
+.ropeproject/
+# local
+/local.ini
+/local.cfg
+
+# app
+/data/*
+bower_components/
+node_modules/
+.vault-pass
+build.log

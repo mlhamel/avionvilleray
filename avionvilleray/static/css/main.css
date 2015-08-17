@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500"); 
+.sandstone, .navbar .nav > li > a, .btn, .nav, .breadcrumb, .pagination,
+.pager, .dropdown-menu > li > a, .tooltip, .panel .panel-heading,
+.panel .panel-title, .panel .panel-footer {
+  font-size: 11px;
+  line-height: 22px;
+  font-weight: 500;
+  text-transform: uppercase; }
+
+  .navbar-form input, .navbar-form .form-control {
+    border: none; }
+
+.btn {
+  border: none; }
+  .btn:hover {
+    border-color: transparent; }
+    .btn-lg {
+      line-height: 26px; }
+      .btn-default:hover {
+        background-color: #393a35; }
+
+input:focus, .form-control:focus {
+  border-color: #DFD7CA; }
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  border-color: #DFD7CA; }
+
+.nav-tabs > li > a {
+  background-color: #F8F5F0;
+  border-color: #DFD7CA;
+  color: #98978B; }
+  .nav-tabs > li.disabled > a:hover {
+    background-color: #F8F5F0; }
+
+.nav-pills a {
+  color: #98978B; }
+  .nav-pills li > a {
+    border: 1px solid transparent; }
+    .nav-pills li.active > a, .nav-pills li > a:hover {
+      border-color: #DFD7CA; }
+      .nav-pills li.disabled > a {
+        border-color: transparent; }
+
+.breadcrumb {
+  border: 1px solid #DFD7CA; }
+  .breadcrumb a {
+    color: #98978B; }
+
+.pager li > a {
+  color: #98978B; }
+
+.alert a, .alert .alert-link {
+  color: #fff; }
+
+.progress {
+  border-radius: 10px;
+  background-color: #DFD7CA; }
+
+.list-group-item {
+  padding: 16px 24px; }
+
+.panel .panel-heading, .panel .panel-title {
+  color: #fff; }
+  .panel-default .panel-heading, .panel-default .panel-title,
+  .panel-default .panel-footer {
+    color: #98978B; }

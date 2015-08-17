@@ -1,0 +1,22 @@
+{
+    "name": "avionvilleray",
+    "version": "0.0.1",
+    "authors": [
+        "Mathieu Leduc-Hamel <mathieu@mlhamel.org>"
+    ],
+    "description": "",
+    "homepage": "https://bitbucket.org/mlhamel/avionvilleray",
+    "private": true,
+    "dependencies": {
+        "bootstrap": "3.1.0",
+        "jquery": "2.0.3",
+        "magnific-popup": "1.0.0"
+    },
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ]
+}
