@@ -58,6 +58,9 @@ setup(
     entry_points="""\
         [paste.app_factory]
         main = avionvilleray:main
+        [console_scripts]
+        avion-scheduler = avionvilleray.jobs.scheduler:main
+        avion-dumper = avionvilleray.jobs.data_dumper:main
     """,
     message_extractors={".": [
         ("**.py", "lingua_python", None),

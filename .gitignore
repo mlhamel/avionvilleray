@@ -19,3 +19,5 @@ bower_components/
 node_modules/
 .vault-pass
 build.log
+logs/
+runs/

@@ -8,10 +8,13 @@ class DataDumper(object):
     def execute(host="127.0.0.1:8080"):
         url = "http://{host}/data.json".format(host=host)
         data = requests.get(url).content
-        get_data = lambda: json.loads(data.decode("utf8"))
-        print("Got data: {data}".format(data=data))
-        return get_data()
+        data = json.loads(data.decode("utf8"))
+        print(data)
+
+
+def main():
+    DataDumper().execute()
 
 
 if __name__ == "__main__":
-    DataDumper().__call__()
+    main()
