@@ -3,6 +3,7 @@ FROM        mlhamel/mlhamel.base
 WORKDIR     /home
 RUN         mkdir /home/avionvilleray
 COPY        . /home/avionvilleray/
+RUN         cd /home/avionvilleray/modules/dump1090 && make clean && make
 RUN         cd /home/avionvilleray && pip install --editable .
 RUN         mkdir -p /var/run/circus
 

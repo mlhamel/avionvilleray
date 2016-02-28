@@ -26,6 +26,8 @@ requires = [
     "pyramid_debugtoolbar",
     "pyramid_tm",
     "pyScss",
+    "pystalkd",
+    "pyyaml",
     "raven",
     "requests",
     "transaction",
@@ -33,6 +35,7 @@ requires = [
     "waitress",
     "webhelpers",
     "zope.sqlalchemy",
+    "zope.component",
 ]
 
 setup(
@@ -59,8 +62,7 @@ setup(
         [paste.app_factory]
         main = avionvilleray:main
         [console_scripts]
-        avion-scheduler = avionvilleray.jobs.scheduler:main
-        avion-dumper = avionvilleray.jobs.data_dumper:main
+        avion-scheduler = avionvilleray.scripts.scheduler:main
     """,
     message_extractors={".": [
         ("**.py", "lingua_python", None),
