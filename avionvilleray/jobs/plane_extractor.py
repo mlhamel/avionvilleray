@@ -1,22 +1,21 @@
-from avionvilleray.scheduler.interface import IScheduler
-from pystalkd.Beanstalkd import Connection
+from avionvilleray.jobs.base_job import BaseJob
 
 
-class PlaneExtractor:
-    def get_connection(self):
-        return Connection(host='localhost', port=11300)
-
+class PlaneExtractor(BaseJob):
     def __call__(self):
-        connection = self.get_connection()
+        return self.run
+
+    def run(self):
         while True:
-            job = connection.reserve()
-            print("Getting job {body}".format(body=job.body))
-            job.delete()
+            content = self.read()
+            if self.is_valid(content):
+                self.save(content)
+
+    def save(self, content):
 
 
 def includeme(config):
-    registry = config.registry
-    scheduler = registry.getUtility(IScheduler)
+    scheduler = BaseJob.get_scheduler(config)
     scheduler.add_job(PlaneExtractor())
 
 

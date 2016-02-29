@@ -32,10 +32,15 @@ requires = [
     "requests",
     "transaction",
     "unicodecsv",
+    "vcrpy",
     "waitress",
     "webhelpers",
     "zope.sqlalchemy",
     "zope.component",
+]
+
+test_requires = [
+    "webtest",
 ]
 
 setup(
@@ -58,6 +63,7 @@ setup(
     zip_safe=False,
     test_suite="avionvilleray",
     install_requires=requires,
+    tests_require=test_requires,
     entry_points="""\
         [paste.app_factory]
         main = avionvilleray:main
