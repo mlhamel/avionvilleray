@@ -49,4 +49,4 @@ minor:
 	bumpversion minor
 
 run:
-	pserve development.ini
+	docker run --rm -P --name avionvilleray --link pgdb:pgdb mlhamel/avionvilleray

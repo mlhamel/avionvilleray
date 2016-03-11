@@ -26,13 +26,21 @@ requires = [
     "pyramid_debugtoolbar",
     "pyramid_tm",
     "pyScss",
+    "pystalkd",
+    "pyyaml",
     "raven",
     "requests",
     "transaction",
     "unicodecsv",
+    "vcrpy",
     "waitress",
     "webhelpers",
     "zope.sqlalchemy",
+    "zope.component",
+]
+
+test_requires = [
+    "webtest",
 ]
 
 setup(
@@ -55,12 +63,12 @@ setup(
     zip_safe=False,
     test_suite="avionvilleray",
     install_requires=requires,
+    tests_require=test_requires,
     entry_points="""\
         [paste.app_factory]
         main = avionvilleray:main
         [console_scripts]
-        avion-scheduler = avionvilleray.jobs.scheduler:main
-        avion-dumper = avionvilleray.jobs.data_dumper:main
+        avion-scheduler = avionvilleray.scripts.scheduler:main
     """,
     message_extractors={".": [
         ("**.py", "lingua_python", None),
