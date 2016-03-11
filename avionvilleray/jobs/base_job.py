@@ -23,12 +23,12 @@ class BaseJob(object):
         return Connection(host='localhost', port=11300)
 
     def encode(self, content):
-        return json.dumps(content)
+        return json.dumps(content.decode("utf8"))
 
     def decode(self, content):
         return json.loads(content)
 
-    def read(self):
+    def receive(self):
         try:
             job = self.get_connection.reserve()
             body = self.decode(job.body)

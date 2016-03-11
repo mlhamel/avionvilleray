@@ -1,14 +1,10 @@
 import requests
-import json
 
 from avionvilleray.jobs.base_job import BaseJob
 
 
 class PlaneProducer(BaseJob):
-    def __call__(self, host="127.0.0.1:8080"):
-        return self.run(host)
-
-    def run(self, host):
+    def run(self, host="127.0.0.1:8080"):
         url = self.get_url(host)
         content = self.get_content(url)
         return self.send(content)
@@ -17,7 +13,7 @@ class PlaneProducer(BaseJob):
         return "http://{host}/data.json".format(host=host)
 
     def get_content(self, url):
-        return json.loads(requests.get(url).content.decode("utf8"))
+        return self.decode(requests.get(url).content)
 
 
 def includeme(config):

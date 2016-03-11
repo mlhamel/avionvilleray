@@ -31,6 +31,7 @@ def main(global_config, **settings):
     config.include("avionvilleray.jinja")
     config.include("avionvilleray.route")
     config.include("avionvilleray.renderers")
+    config.include("avionvilleray.models")
 
     static_url = config.registry.settings.get("app.static.url", "static")
     config.registry.settings["app.static.url"] = static_url
