@@ -2,6 +2,7 @@ import logging
 import json
 
 from functools import lru_cache
+from collections import OrderedDict
 
 from avionvilleray.scheduler.interface import IScheduler
 from pystalkd.Beanstalkd import Connection
@@ -23,10 +24,10 @@ class BaseJob(object):
         return Connection(host='localhost', port=11300)
 
     def encode(self, content):
-        return json.dumps(content.decode("utf8"))
+        return json.dumps(content, sort_keys=True)
 
     def decode(self, content):
-        return json.loads(content)
+        return json.loads(content.decode("utf8"), object_pairs_hook=OrderedDict)
 
     def receive(self):
         try:
@@ -39,4 +40,8 @@ class BaseJob(object):
 
     def send(self, content):
         log.debug("Saving: {content}".format(content=content))
-        return self.get_connection().put(self.encode(content))
+
+        value = self.encode(content)
+        connection = self.get_connection()
+
+        return connection.put(value)

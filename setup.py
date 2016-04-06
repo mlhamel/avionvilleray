@@ -8,7 +8,6 @@ CHANGES = open(os.path.join(here, "CHANGES.txt")).read()
 
 requires = [
     "alembic",
-    "ansible",
     "apscheduler",
     "Babel",
     "bumpversion",
@@ -34,7 +33,6 @@ requires = [
     "unicodecsv",
     "vcrpy",
     "waitress",
-    "webhelpers",
     "zope.sqlalchemy",
     "zope.component",
 ]

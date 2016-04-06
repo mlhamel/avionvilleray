@@ -11,6 +11,9 @@ interactions:
   response:
     body: {string: '[
 
+        {"hex":"740527", "flight":"RJA6102 ", "lat":45.554443, "lon":-73.571085, "altitude":5100,
+        "track":100, "speed":311}
+
         ]
 
 '}

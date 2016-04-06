@@ -12,6 +12,7 @@
 # local
 /local.ini
 /local.cfg
+.eggs/
 
 # app
 /data/*

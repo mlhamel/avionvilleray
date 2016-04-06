@@ -13,27 +13,37 @@ class TestPlaneProducer(unittest.TestCase):
     def setUp(self):
         self.config = testing.setUp()
         self.job = PlaneProducer()
-
+        self.expected = [{'lon': -73.571085,
+                          'track': 100,
+                          'speed': 311,
+                          'altitude': 5100,
+                          'hex': '740527',
+                          'lat': 45.554443,
+                          'flight': 'RJA6102 '}]
     def tearDown(self):
         testing.tearDown()
 
     @vcr.use_cassette('fixtures/vcr/jobs/plane_producer/get_content.yaml')
     def test_get_content(self):
         url = "http://{host}/data.json".format(host=self.host)
-        self.assertEqual(self.job.get_content(url),
-                         [{'lon': -73.571085,
-                           'track': 100,
-                           'speed': 311,
-                           'altitude': 5100,
-                           'hex': '740527',
-                           'lat': 45.554443,
-                           'flight': 'RJA6102 '}])
+        result = self.job.get_content(url)
+        expected = [{'lon': -73.571085,
+                     'track': 100,
+                     'speed': 311,
+                     'altitude': 5100,
+                     'hex': '740527',
+                     'lat': 45.554443,
+                     'flight': 'RJA6102 '}]
+        self.assertEqual(result, expected)
 
     @vcr.use_cassette('fixtures/vcr/jobs/plane_producer/run.yaml')
     def test_run(self):
         connection = Mock()
-        connection.send = MagicMock(return_value=True)
-        connection.send.assert_called_once()
+        connection.put = MagicMock(return_value=True)
 
         self.job.get_connection = MagicMock(return_value=connection)
-        self.job.run(self.host)
+        self.job.run(host=self.host)
+
+        content = self.job.encode(self.expected)
+
+        connection.put.assert_called_once_with(content)
