@@ -48,5 +48,8 @@ major:
 minor:
 	bumpversion minor
 
+test:
+	python setup.py test
+
 run:
 	docker run --rm -P --name avionvilleray --link pgdb:pgdb mlhamel/avionvilleray
