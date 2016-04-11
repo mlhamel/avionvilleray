@@ -1,10 +1,13 @@
 import unittest
+
 from pyramid import testing
 
 
-class TestApsScheduler(unittest.TestCase):
+class AbstractTestCase(unittest.TestCase):
+    host = "127.0.0.1:8080"
+
     def setUp(self):
-        self.config = testing.setUp()
+        testing.setUp()
 
     def tearDown(self):
         testing.tearDown()

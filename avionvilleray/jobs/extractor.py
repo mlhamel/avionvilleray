@@ -1,25 +1,32 @@
 import transaction
 
 from avionvilleray.jobs.base_job import BaseJob
+from avionvilleray.lib import jsonutil
 from avionvilleray import models as m
 
 
-class PlaneExtractor(BaseJob):
-    def run(self):
+class ExtractorJob(BaseJob):
+    def run(self, host="127.0.0.1:8080"):
         while True:
             content = self.receive()
-            if self.is_valid(content):
-                self.save(content)
+
+            if content == {"command": "quit"}:
+                break
+
+            self.save(content)
 
     def save(self, content):
         with transaction.manager:
             for item in content:
-                m.add(m.Event(**item))
+                self.add_item(**item)
+
+    def add_item(self, item):
+        m.add(m.Event(**item))
 
 
 def includeme(config):
     scheduler = BaseJob.get_scheduler(config)
-    scheduler.add_job(PlaneExtractor())
+    scheduler.add_job(ExtractorJob())
 
 
 def main():
