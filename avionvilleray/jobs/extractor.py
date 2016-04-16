@@ -6,7 +6,7 @@ from avionvilleray import models as m
 
 
 class ExtractorJob(BaseJob):
-    def run(self, host="127.0.0.1:8080"):
+    def run(self, host):
         while True:
             content = self.receive()
 
