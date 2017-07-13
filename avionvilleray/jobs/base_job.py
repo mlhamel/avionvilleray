@@ -1,16 +1,17 @@
 import logging
 
-from functools import lru_cache
-
 from pystalkd.Beanstalkd import Connection
 
 from avionvilleray.lib import jsonutil
-from avionvilleray.scheduler.interface import IScheduler
+from avionvilleray.interface import IScheduler
 
 log = logging.getLogger(__name__)
 
 
 class BaseJob(object):
+    def __init__(self):
+        self.connection = None
+
     @staticmethod
     def get_registry(config):
         return config.registry
@@ -19,18 +20,21 @@ class BaseJob(object):
     def get_scheduler(config):
         return BaseJob.get_registry(config).getUtility(IScheduler)
 
-    @lru_cache(maxsize=None)
     def get_connection(self):
-        return Connection(host='localhost', port=11300)
+        if not self.connection:
+            self.connection = Connection(host='localhost', port=11300)
+        return self.connection
 
     def receive(self):
+        job = None
         try:
-            job = self.get_connection.reserve()
+            job = self.get_connection().reserve()
             body = jsonutil.decode(job.body)
             log.debug("Getting job {body}".format(body=body))
             return body
         finally:
-            job.delete()
+            if job:
+                job.delete()
 
     def send(self, content):
         log.debug("Saving: {content}".format(content=content))

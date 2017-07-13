@@ -2,7 +2,6 @@ import transaction
 
 from avionvilleray.jobs.base_job import BaseJob
 from avionvilleray.lib import jsonutil
-from avionvilleray import models as m
 
 
 class ExtractorJob(BaseJob):
@@ -30,8 +29,8 @@ def includeme(config):
 
 
 def main():
-    extractor = PlaneExtractor()
-    extractor()
+    extractor = ExtractorJob()
+    extractor.run()
 
 
 if __name__ == "__main__":

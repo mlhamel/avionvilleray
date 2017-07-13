@@ -4,7 +4,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 from zope.interface import implementer
 
-from avionvilleray.scheduler.interface import IScheduler
+from avionvilleray.interface import IScheduler
 
 
 @implementer(IScheduler)

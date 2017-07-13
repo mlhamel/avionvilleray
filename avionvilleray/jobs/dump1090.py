@@ -1,6 +1,6 @@
 import subprocess
 
-from avionvilleray.scheduler.interface import IScheduler
+from avionvilleray.interface import IScheduler
 from avionvilleray.jobs.base_job import BaseJob
 
 

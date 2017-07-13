@@ -2,18 +2,20 @@
 ETL solution to track planes on top of Villeray
 
 Usage:
-    avion-scheduler <config>
+    avion-collector <config>
 
 Options:
     -h, --help            Display this message.
     -v, --verbose         Display verbose output.
 """
+import requests
+
 from pyramid.config import Configurator
 from docopt import docopt
 
 from pyramid.paster import bootstrap, setup_logging
 
-from avionvilleray.interface import IScheduler
+from avionvilleray.interface import ICollector
 
 
 def main():
@@ -26,10 +28,10 @@ def main():
         settings, closer = env['registry'].settings, env['closer']
         config = Configurator(settings=settings)
 
-        config.include("avionvilleray.scheduler")
+        config.include("avionvilleray.scheduler.aps_scheduler")
 
-        scheduler = config.registry.getUtility(IScheduler)
-        scheduler()
+        collector = config.registry.getUtility(ICollector)
+        collector.collect()
     finally:
         closer()
 

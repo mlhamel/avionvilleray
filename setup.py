@@ -7,7 +7,6 @@ README = open(os.path.join(here, "README.md")).read()
 CHANGES = open(os.path.join(here, "CHANGES.txt")).read()
 
 requires = [
-    "alembic",
     "apscheduler",
     "Babel",
     "bumpversion",
@@ -17,6 +16,7 @@ requires = [
     "docopt",
     "dogpile.cache",
     "GitPython",
+    "gsutil",
     "jinja2",
     "markdown2",
     "pyramid>=1.5",
@@ -33,7 +33,6 @@ requires = [
     "unicodecsv",
     "vcrpy",
     "waitress",
-    "zope.sqlalchemy",
     "zope.component",
 ]
 
@@ -67,6 +66,7 @@ setup(
         main = avionvilleray:main
         [console_scripts]
         avion-scheduler = avionvilleray.scripts.scheduler:main
+        avion-collector = avionvilleray.scripts.collector:main
     """,
     message_extractors={".": [
         ("**.py", "lingua_python", None),
